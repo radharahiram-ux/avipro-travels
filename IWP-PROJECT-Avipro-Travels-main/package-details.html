@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Package Details - Avipro Travels</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container header-container">
+        <div class="logo">
+                <h1><a href="index.html">Avipro<span>Yatra</span></a>
+      <p class="tagline">Experience Incredible India</p></h1>
+        </div>
+        <nav>
+          <div class="mobile-menu">☰</div>
+          <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link active">Home</a></li>
+            <li><a href="about.html" class="nav-link">About Us</a></li>
+            <li><a href="packages.html" class="nav-link">Tour Packages</a></li>
+            <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+            <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+            <li>
+              <a href="admin-login.php" class="btn admin-btn">Admin Login</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <h1>Package Details</h1>
+        <div class="breadcrumb">
+          <a href="index.html">Home</a> <span>/</span>
+          <a href="packages.html">Tour Packages</a> <span>/</span>
+          <span id="package-name-breadcrumb">Package Details</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Package Details -->
+    <section class="section">
+      <div class="container">
+        <div class="package-details">
+          <div class="package-gallery">
+            <div class="main-image">
+              <img id="main-image" alt="Package Image" />
+            </div>
+            <div class="thumbnail-gallery" id="thumbnail-gallery">
+              <!-- Thumbnails will be dynamically added here -->
+            </div>
+
+            <div class="package-description" style="margin-top: 30px">
+              <h2 id="package-title">Package Title</h2>
+              <p id="package-overview">Package overview description</p>
+
+              <h3>Itinerary</h3>
+              <ul id="itinerary-list">
+                <!-- Itinerary will be dynamically added here -->
+              </ul>
+
+              <h3>Inclusions</h3>
+              <ul id="inclusions-list">
+                <!-- Inclusions will be dynamically added here -->
+              </ul>
+
+              <h3>Destinations Covered</h3>
+              <p id="destinations-covered"></p>
+
+              <h3>Duration</h3>
+              <p id="package-duration"></p>
+
+              <h3>Highlights</h3>
+              <ul id="highlights-list">
+                <!-- Highlights will be dynamically added here -->
+              </ul>
+            </div>
+          </div>
+
+          <div class="package-sidebar">
+            <div class="price-box">
+              <div class="price" id="package-price">₹0</div>
+              <p>per person</p>
+              <div class="package-badge" id="package-badge">Category</div>
+              <p id="package-duration-sidebar"></p>
+              <p id="package-locations-sidebar"></p>
+            </div>
+
+            <div class="booking-form">
+              <h3>Book This Package</h3>
+              <form id="booking-form">
+                <div class="form-group">
+                  <label for="name">Full Name</label>
+                  <input type="text" id="name" class="form-control" required />
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone</label>
+                  <input type="tel" id="phone" class="form-control" required />
+                </div>
+                <div class="form-group">
+                  <label for="destination">Destination</label>
+                  <input
+                    type="text"
+                    id="destination"
+                    class="form-control"
+                    readonly
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="travel-date">Travel Date</label>
+                  <input
+                    type="date"
+                    id="travel-date"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="persons">Number of Persons</label>
+                  <select id="persons" class="form-control" required>
+                    <option value="">Select</option>
+                    <option value="1">1 Person</option>
+                    <option value="2">2 Persons</option>
+                    <option value="3">3 Persons</option>
+                    <option value="4">4 Persons</option>
+                    <option value="5+">5+ Persons</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="message">Message (Optional)</label>
+                  <textarea id="message" class="form-control"></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-secondary"
+                  style="width: 100%"
+                >
+                  Submit Booking
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <!-- Same footer as index.html -->
+        </div>
+        <div class="copyright">
+          <p>&copy; 2025 Avipro Travels. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Package Data Script -->
+    <script>
+      // Package data for all 6 Indian destinations
+      const packages = {
+        rajasthan: {
+          title: "Royal Rajasthan Heritage Tour",
+          badge: "Cultural",
+          price: "₹45,999",
+          duration: "8 Days / 7 Nights",
+          locations: "Jaipur, Udaipur, Jodhpur",
+          overview:
+            "Experience the royal grandeur of Rajasthan with palace stays, desert safaris, and cultural performances.",
+          mainImage: "assets/images/rajasthan.jpg",
+          thumbnails: [
+            "assets/images/rajasthan.jpg",
+            "assets/images/rajasthan2.avif",
+            "assets/images/rajasthan3.jpeg",
+          ],
+          itinerary: [
+            "Day 1: Arrival in Jaipur, welcome ceremony",
+            "Day 2: Amber Fort, City Palace, Jantar Mantar",
+            "Day 3: Travel to Udaipur, boat ride on Lake Pichola",
+            "Day 4: City Palace, Jagdish Temple, Saheliyon-ki-Bari",
+            "Day 5: Travel to Jodhpur, Mehrangarh Fort visit",
+            "Day 6: Jaswant Thada, Umaid Bhawan Palace",
+            "Day 7: Desert safari in Jaisalmer (optional)",
+            "Day 8: Departure from Jaipur",
+          ],
+          inclusions: [
+            "7 nights accommodation in heritage hotels",
+            "Daily breakfast and dinner",
+            "All transfers and sightseeing as per itinerary",
+            "Entrance fees to monuments",
+            "Desert camel safari",
+            "Cultural performance show",
+            "24/7 tour guide assistance",
+          ],
+          highlights: [
+            "Stay in heritage palaces converted to hotels",
+            "Evening desert safari with cultural performances",
+            "Boat ride on Lake Pichola in Udaipur",
+            "Visit to majestic forts and palaces",
+          ],
+        },
+        kerala: {
+          title: "Kerala Backwaters & Ayurveda Retreat",
+          badge: "Relaxation",
+          price: "₹38,500",
+          duration: "7 Days / 6 Nights",
+          locations: "Alleppey, Munnar, Kochi",
+          overview:
+            "Houseboat cruise through serene backwaters, Ayurvedic treatments, and tea plantation tours.",
+          mainImage: "assets/images/kerala.avif",
+          thumbnails: [
+            "assets/images/kerala.avif",
+            "assets/images/kerala2.jpg",
+            "assets/images/kerala3.jpeg",
+          ],
+          itinerary: [
+            "Day 1: Arrival in Kochi, transfer to hotel",
+            "Day 2: Kochi city tour - Fort Kochi, Chinese fishing nets",
+            "Day 3: Travel to Munnar, visit tea plantations",
+            "Day 4: Eravikulam National Park, tea museum",
+            "Day 5: Travel to Alleppey, evening houseboat check-in",
+            "Day 6: Backwater cruise, village walk, Ayurvedic massage",
+            "Day 7: Departure from Kochi",
+          ],
+          inclusions: [
+            "6 nights accommodation (including 1 night houseboat)",
+            "Daily breakfast",
+            "Alleppey houseboat cruise with meals",
+            "Ayurvedic massage session",
+            "All transfers in AC vehicle",
+            "Sightseeing as per itinerary",
+            "English speaking guide",
+          ],
+          highlights: [
+            "Overnight stay in traditional Kerala houseboat",
+            "Authentic Ayurvedic massage therapy",
+            "Tea plantation tour in Munnar hills",
+            "Kathakali dance performance in Kochi",
+          ],
+        },
+        himalayas: {
+          title: "Himalayan Trekking Expedition",
+          badge: "Adventure",
+          price: "₹52,000",
+          duration: "10 Days / 9 Nights",
+          locations: "Manali, Leh-Ladakh",
+          overview:
+            "Trek through breathtaking Himalayan landscapes, visit ancient monasteries, and experience local culture.",
+          mainImage: "assets/images/manali.jpg",
+          thumbnails: [
+            "assets/images/manali.jpg",
+            "assets/images/manali2.jpeg",
+            "assets/images/manali3.jpeg",
+          ],
+          itinerary: [
+            "Day 1: Arrival in Manali, acclimatization",
+            "Day 2: Local sightseeing - Hadimba Temple, Old Manali",
+            "Day 3: Trek from Manali to Solang Valley",
+            "Day 4: Trek to Beas Kund base camp",
+            "Day 5: Travel to Leh via Manali-Leh Highway",
+            "Day 6: Leh acclimatization, local monastery visits",
+            "Day 7: Leh to Nubra Valley via Khardung La pass",
+            "Day 8: Nubra Valley - Hunder sand dunes, double-humped camels",
+            "Day 9: Return to Leh, visit Pangong Lake",
+            "Day 10: Departure from Leh",
+          ],
+          inclusions: [
+            "9 nights accommodation (hotels and camps)",
+            "All meals during trekking days",
+            "Trekking equipment and guide",
+            "All transfers including inner line permits",
+            "Monastery entrance fees",
+            "Medical kit and oxygen cylinders",
+            "Adventure activities",
+          ],
+          highlights: [
+            "Cross Khardung La - world's highest motorable road",
+            "Visit Pangong Lake - famous from 3 Idiots movie",
+            "Stay in camps near Nubra Valley sand dunes",
+            "Trekking in Solang Valley and Beas Kund",
+          ],
+        },
+        goa: {
+          title: "Goa Coastal Retreat",
+          badge: "Beach & Relaxation",
+          price: "₹28,500",
+          duration: "7 Days / 6 Nights",
+          locations: "North Goa, South Goa",
+          overview:
+            "Unwind on pristine beaches, explore Portuguese heritage sites, and enjoy vibrant nightlife and seafood.",
+          mainImage: "assets/images/goa.avif",
+          thumbnails: [
+            "assets/images/goa.avif",
+            "assets/images/goa2.jpg",
+            "assets/images/goa3.jpeg",
+          ],
+          itinerary: [
+            "Day 1: Arrival in Goa, transfer to beach resort",
+            "Day 2: North Goa beaches - Calangute, Baga, Anjuna",
+            "Day 3: Old Goa churches, Basilica of Bom Jesus",
+            "Day 4: South Goa beaches - Palolem, Colva",
+            "Day 5: Spice plantation tour, Dudhsagar Falls visit",
+            "Day 6: Cruise on Mandovi River, casino night",
+            "Day 7: Departure from Goa",
+          ],
+          inclusions: [
+            "6 nights beach resort accommodation",
+            "Daily breakfast",
+            "Spice plantation tour with lunch",
+            "Mandovi River cruise",
+            "All transfers in AC vehicle",
+            "Beach activities equipment",
+            "Guide for heritage sites",
+          ],
+          highlights: [
+            "Beach hopping in North and South Goa",
+            "Visit UNESCO World Heritage churches in Old Goa",
+            "Spice plantation tour with authentic Goan lunch",
+            "Sunset cruise on Mandovi River",
+          ],
+        },
+        meghalaya: {
+          title: "Meghalaya's Abode of Clouds",
+          badge: "Nature & Culture",
+          price: "₹35,800",
+          duration: "8 Days / 7 Nights",
+          locations: "Shillong, Cherrapunji, Mawlynnong",
+          overview:
+            "Explore living root bridges, witness the world's wettest places, and experience unique Khasi culture in pristine landscapes.",
+          mainImage: "assets/images/meghalaya.avif",
+          thumbnails: [
+            "assets/images/meghalaya.avif",
+            "https://images.unsplash.com/photo-1598894597313-4c9d49a3c9c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1591824438704-b7dba3c3695f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+          ],
+          itinerary: [
+            "Day 1: Arrival in Guwahati, transfer to Shillong",
+            "Day 2: Shillong sightseeing - Elephant Falls, Ward's Lake",
+            "Day 3: Shillong to Cherrapunji, Seven Sisters Falls",
+            "Day 4: Living root bridges trek in Nongriat village",
+            "Day 5: Mawlynnong - Asia's cleanest village, sky walk",
+            "Day 6: Dawki river - crystal clear waters, boating",
+            "Day 7: Return to Shillong, local market visit",
+            "Day 8: Departure from Guwahati",
+          ],
+          inclusions: [
+            "7 nights accommodation in hotels/homestays",
+            "Daily breakfast and dinner",
+            "All transfers in SUV vehicle",
+            "Trekking guide for root bridges",
+            "Entrance fees to all attractions",
+            "Boating in Dawki river",
+            "Cultural interaction with local tribes",
+          ],
+          highlights: [
+            "Trek to living root bridges in Cherrapunji",
+            "Visit Asia's cleanest village - Mawlynnong",
+            "See crystal clear waters of Dawki river",
+            "Experience Khasi tribal culture and cuisine",
+          ],
+        },
+        kashmir: {
+          title: "Kashmir Valley Serenity",
+          badge: "Paradise on Earth",
+          price: "₹45,500",
+          duration: "9 Days / 8 Nights",
+          locations: "Srinagar, Gulmarg, Pahalgam",
+          overview:
+            "Experience shikara rides on Dal Lake, gondola rides in Gulmarg, and the breathtaking beauty of Kashmir's gardens and valleys.",
+          mainImage: "assets/images/kashmir.jpeg",
+          thumbnails: [
+            "assets/images/kashmir.jpeg",
+            "assets/images/kashmir2.jpg",
+            "assets/images/kashmir3.avif",
+          ],
+          itinerary: [
+            "Day 1: Arrival in Srinagar, shikara ride on Dal Lake",
+            "Day 2: Srinagar sightseeing - Mughal Gardens, Shankaracharya Temple",
+            "Day 3: Srinagar to Gulmarg, gondola ride Phase 1",
+            "Day 4: Gulmarg to Phase 2 gondola, golf course visit",
+            "Day 5: Gulmarg to Pahalgam, Betaab Valley",
+            "Day 6: Pahalgam - Aru Valley, Chandanwari",
+            "Day 7: Pahalgam to Srinagar, houseboat stay",
+            "Day 8: Free day for shopping, local market visit",
+            "Day 9: Departure from Srinagar",
+          ],
+          inclusions: [
+            "8 nights accommodation (houseboat and hotels)",
+            "Daily breakfast and dinner",
+            "Shikara ride on Dal Lake",
+            "Gondola ride ticket Phase 1",
+            "All transfers in private vehicle",
+            "Entry tickets to all gardens and attractions",
+            "Local guide services",
+          ],
+          highlights: [
+            "Stay in traditional houseboat on Dal Lake",
+            "Gondola cable car ride in Gulmarg",
+            "Visit to Mughal Gardens - Nishat, Shalimar, Chashme Shahi",
+            "Scenic drives through Kashmir valley",
+          ],
+        },
+      };
+
+      // Get package parameter from URL
+      function getPackageFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get("package") || "rajasthan";
+      }
+
+      // Update page with package data
+      function loadPackageData() {
+        const packageId = getPackageFromURL();
+        const packageData = packages[packageId] || packages.rajasthan;
+
+        // Update page title
+        document.title = `${packageData.title} - Avipro Travels`;
+
+        // Update breadcrumb
+        document.getElementById("package-name-breadcrumb").textContent =
+          packageData.title;
+
+        // Update main content
+        document.getElementById("package-title").textContent =
+          packageData.title;
+        document.getElementById("package-overview").textContent =
+          packageData.overview;
+        document.getElementById("destinations-covered").textContent =
+          packageData.locations;
+        document.getElementById("package-duration").textContent =
+          packageData.duration;
+
+        // Update sidebar
+        document.getElementById("package-price").textContent =
+          packageData.price;
+        document.getElementById("package-badge").textContent =
+          packageData.badge;
+        document.getElementById("package-duration-sidebar").textContent =
+          packageData.duration;
+        document.getElementById("package-locations-sidebar").textContent =
+          packageData.locations;
+        document.getElementById("destination").value = packageData.title;
+
+        // Update images
+        const mainImage = document.getElementById("main-image");
+        mainImage.src = packageData.mainImage;
+        mainImage.alt = packageData.title;
+
+        // Update thumbnails
+        const thumbnailGallery = document.getElementById("thumbnail-gallery");
+        thumbnailGallery.innerHTML = "";
+        packageData.thumbnails.forEach((thumbSrc, index) => {
+          const thumbnail = document.createElement("div");
+          thumbnail.className = "thumbnail";
+          thumbnail.onclick = () => changeImage(thumbSrc);
+
+          const img = document.createElement("img");
+          img.src = thumbSrc;
+          img.alt = `${packageData.title} - View ${index + 1}`;
+
+          thumbnail.appendChild(img);
+          thumbnailGallery.appendChild(thumbnail);
+        });
+
+        // Update itinerary
+        const itineraryList = document.getElementById("itinerary-list");
+        itineraryList.innerHTML = "";
+        packageData.itinerary.forEach((item) => {
+          const li = document.createElement("li");
+          li.innerHTML = `<strong>${item.split(":")[0]}:</strong>${item
+            .split(":")
+            .slice(1)
+            .join(":")}`;
+          itineraryList.appendChild(li);
+        });
+
+        // Update inclusions
+        const inclusionsList = document.getElementById("inclusions-list");
+        inclusionsList.innerHTML = "";
+        packageData.inclusions.forEach((item) => {
+          const li = document.createElement("li");
+          li.textContent = item;
+          inclusionsList.appendChild(li);
+        });
+
+        // Update highlights if they exist
+        const highlightsList = document.getElementById("highlights-list");
+        if (packageData.highlights) {
+          highlightsList.innerHTML = "";
+          packageData.highlights.forEach((item) => {
+            const li = document.createElement("li");
+            li.textContent = item;
+            highlightsList.appendChild(li);
+          });
+        }
+      }
+
+      // Image change function
+      function changeImage(src) {
+        document.getElementById("main-image").src = src;
+      }
+
+      // Initialize when page loads
+      document.addEventListener("DOMContentLoaded", loadPackageData);
+    </script>
+
+    <script src="js/main.js"></script>
+    <script src="js/forms.js"></script>
+  </body>
+</html>

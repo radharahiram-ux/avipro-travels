@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage Bookings - Avipro Travels Admin</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+  </head>
+  <body>
+    <div class="admin-container">
+      <!-- Sidebar -->
+      <div class="admin-sidebar">
+        <div class="admin-logo">
+          <h2>Avipro Travels</h2>
+          <p>Admin Panel</p>
+        </div>
+
+        <div class="admin-menu">
+          <ul>
+            <li><a href="admin-panel.php">Dashboard</a></li>
+            <li><a href="packages.php">Travel Packages</a></li>
+            <li><a href="bookings.html" class="active">Bookings</a></li>
+            <li><a href="enquiries.html">Enquiries</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="admin-content">
+        <div class="admin-header">
+          <h1>Manage Bookings</h1>
+          <div class="admin-user">
+                    Welcome, admin |
+                    <a href="../php/logout.php">Logout</a>
+                </div>
+
+        </div>
+
+        <!-- Booking Stats -->
+        <div class="stats-grid">
+          <div class="stat-card primary">
+            <div class="stat-number">156</div>
+            <div class="stat-label">Total Bookings</div>
+          </div>
+          <div class="stat-card success">
+            <div class="stat-number">124</div>
+            <div class="stat-label">Confirmed</div>
+          </div>
+          <div class="stat-card warning">
+            <div class="stat-number">28</div>
+            <div class="stat-label">Pending</div>
+          </div>
+          <div class="stat-card danger">
+            <div class="stat-number">4</div>
+            <div class="stat-label">Cancelled</div>
+          </div>
+        </div>
+
+        <!-- Bookings List -->
+        <div class="admin-card">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 20px;
+            "
+          >
+            <h3>All Bookings</h3>
+            <div>
+              <select
+                class="form-control"
+                style="display: inline-block; width: auto; margin-right: 10px"
+              >
+                <option>All Status</option>
+                <option>Pending</option>
+                <option>Confirmed</option>
+                <option>Cancelled</option>
+              </select>
+              <input
+                type="text"
+                placeholder="Search bookings..."
+                class="form-control"
+                style="display: inline-block; width: auto"
+              />
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Booking ID</th>
+                  <th>Customer</th>
+                  <th>Package</th>
+                  <th>Travel Date</th>
+                  <th>Persons</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Booking Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Row 1 - Golden Triangle Tour -->
+                <tr>
+                  <td>#BK001</td>
+                  <td>
+                    <strong>Rajesh Sharma</strong><br />
+                    rajesh.sharma@gmail.com<br />
+                    +91 98765 43210
+                  </td>
+                  <td>Golden Triangle Tour</td>
+                  <td>20 Dec 2025</td>
+                  <td>4</td>
+                  <td>₹1,03,996</td>
+                  <td><span class="status-badge confirmed">Confirmed</span></td>
+                  <td>10 Nov 2025</td>
+                  <td class="action-buttons">
+                    <button class="btn-view">View</button>
+                    <button class="btn-edit">Edit</button>
+                  </td>
+                </tr>
+
+                <!-- Row 2 - Kashmir Paradise Package -->
+                <tr>
+                  <td>#BK002</td>
+                  <td>
+                    <strong>Priya Patel</strong><br />
+                    priya.patel@yahoo.co.in<br />
+                    +91 87654 32109
+                  </td>
+                  <td>Kashmir Paradise Package</td>
+                  <td>15 Jan 2026</td>
+                  <td>2</td>
+                  <td>₹69,998</td>
+                  <td><span class="status-badge pending">Pending</span></td>
+                  <td>12 Nov 2025</td>
+                  <td class="action-buttons">
+                    <button class="btn-view">View</button>
+                    <button class="btn-edit">Edit</button>
+                  </td>
+                </tr>
+
+                <!-- Row 3 - Kerala Backwaters Experience -->
+                <tr>
+                  <td>#BK003</td>
+                  <td>
+                    <strong>Arjun Kumar</strong><br />
+                    arjun.k@outlook.com<br />
+                    +91 78901 23456
+                  </td>
+                  <td>Kerala Backwaters Experience</td>
+                  <td>10 Feb 2026</td>
+                  <td>6</td>
+                  <td>₹1,73,994</td>
+                  <td><span class="status-badge confirmed">Confirmed</span></td>
+                  <td>15 Nov 2025</td>
+                  <td class="action-buttons">
+                    <button class="btn-view">View</button>
+                    <button class="btn-edit">Edit</button>
+                  </td>
+                </tr>
+
+                <!-- Row 4 - Goa Beach Holiday -->
+                <tr>
+                  <td>#BK004</td>
+                  <td>
+                    <strong>Sneha Reddy</strong><br />
+                    sneha.reddy@gmail.com<br />
+                    +91 89012 34567
+                  </td>
+                  <td>Goa Beach Holiday</td>
+                  <td>28 Dec 2025</td>
+                  <td>8</td>
+                  <td>₹1,75,992</td>
+                  <td><span class="status-badge confirmed">Confirmed</span></td>
+                  <td>18 Nov 2025</td>
+                  <td class="action-buttons">
+                    <button class="btn-view">View</button>
+                    <button class="btn-edit">Edit</button>
+                  </td>
+                </tr>
+
+                <!-- Row 5 - Ladakh Adventure Trip -->
+                <tr>
+                  <td>#BK005</td>
+                  <td>
+                    <strong>Vikram Singh</strong><br />
+                    vikram.singh@hotmail.com<br />
+                    +91 90123 45678
+                  </td>
+                  <td>Ladakh Adventure Trip</td>
+                  <td>15 Jun 2026</td>
+                  <td>3</td>
+                  <td>₹1,25,997</td>
+                  <td><span class="status-badge pending">Pending</span></td>
+                  <td>20 Nov 2025</td>
+                  <td class="action-buttons">
+                    <button class="btn-view">View</button>
+                    <button class="btn-edit">Edit</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination -->
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-top: 20px;
+            "
+          >
+            <div>Showing 1 to 10 of 156 entries</div>
+            <div style="display: flex; gap: 5px">
+              <button class="btn" disabled>Previous</button>
+              <button class="btn">1</button>
+              <button class="btn">2</button>
+              <button class="btn">3</button>
+              <button class="btn">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      .status-badge {
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+      .status-badge.confirmed {
+        background: #e6f4ea;
+        color: var(--secondary);
+      }
+      .status-badge.pending {
+        background: #fef7e0;
+        color: var(--accent);
+      }
+      .status-badge.cancelled {
+        background: #fce8e6;
+        color: #ea4335;
+      }
+    </style>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/admin.js"></script>
+  </body>
+</html>

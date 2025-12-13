@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery - Avipro Travels</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      /* Gallery and Slideshow Styles */
+      .gallery-section {
+        padding: 60px 0;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      }
+
+      .gallery-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .gallery-title {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .gallery-title h2 {
+        font-size: 2.5rem;
+        color: #2c3e50;
+        margin-bottom: 10px;
+      }
+
+      .gallery-title p {
+        color: #7f8c8d;
+        font-size: 1.1rem;
+      }
+
+      /* Slideshow Container */
+      .slideshow-container {
+        position: relative;
+        max-width: 1000px;
+        margin: 0 auto 40px;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .slideshow {
+        display: flex;
+        transition: transform 0.8s ease-in-out;
+        height: 500px;
+      }
+
+      .slide {
+        min-width: 100%;
+        height: 100%;
+        position: relative;
+      }
+
+      .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .slide-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .slide-caption h3 {
+        margin: 0 0 5px 0;
+        font-size: 1.5rem;
+      }
+
+      .slide-caption p {
+        margin: 0;
+        opacity: 0.9;
+      }
+
+      /* Navigation Buttons */
+      .slideshow-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 20px;
+        z-index: 10;
+      }
+
+      .nav-btn {
+        background: rgba(255, 255, 255, 0.8);
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 24px;
+        color: #2c3e50;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .nav-btn:hover {
+        background: white;
+        transform: scale(1.1);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Slideshow Dots */
+      .slideshow-dots {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .dot {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        margin: 0 5px;
+        background-color: #bbb;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .dot.active {
+        background-color: #3498db;
+        transform: scale(1.2);
+      }
+
+      /* Gallery Grid */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 40px;
+      }
+
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        cursor: pointer;
+        height: 200px;
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .gallery-item-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 10px;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover .gallery-item-overlay {
+        transform: translateY(0);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .slideshow-container {
+          height: 350px;
+        }
+
+        .slide-caption h3 {
+          font-size: 1.2rem;
+        }
+
+        .nav-btn {
+          width: 40px;
+          height: 40px;
+          font-size: 18px;
+        }
+
+        .gallery-grid {
+          grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        }
+      }
+
+      @media (max-width: 480px) {
+        .slideshow-container {
+          height: 250px;
+        }
+
+        .gallery-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      /* Controls */
+      .slideshow-controls {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .control-btn {
+        background: #3498db;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin: 0 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background 0.3s ease;
+      }
+
+      .control-btn:hover {
+        background: #2980b9;
+      }
+
+      .control-btn.pause {
+        background: #e74c3c;
+      }
+
+      .control-btn.pause:hover {
+        background: #c0392b;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container header-container">
+        <div class="logo">
+          <h1>
+            <a href="index.html">Avipro<span>Yatra</span></a>
+            <p class="tagline">Experience Incredible India</p>
+          </h1>
+        </div>
+        <nav>
+          <div class="mobile-menu">☰</div>
+          <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link">About Us</a></li>
+            <li><a href="packages.html" class="nav-link">Tour Packages</a></li>
+            <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
+            <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+            <li>
+              <a href="admin-login.php" class="btn admin-btn">Admin Login</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <h1>Gallery</h1>
+        <div class="breadcrumb">
+          <a href="index.html">Home</a> <span>/</span> <a href="#">Gallery</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section with Slideshow -->
+    <section class="gallery-section">
+      <div class="gallery-container">
+        <div class="gallery-title">
+          <h2>Discover Incredible India</h2>
+          <p>Explore breathtaking destinations through our photo gallery</p>
+        </div>
+
+        <!-- Slideshow -->
+        <div class="slideshow-container">
+          <div class="slideshow" id="slideshow">
+            <!-- Slides will be added dynamically by JavaScript -->
+          </div>
+
+          <div class="slideshow-nav">
+            <button class="nav-btn prev-btn">❮</button>
+            <button class="nav-btn next-btn">❯</button>
+          </div>
+
+          <div class="slide-caption">
+            <h3 id="slide-title">Title</h3>
+            <p id="slide-description">Description</p>
+          </div>
+        </div>
+
+        <div class="slideshow-dots" id="dots-container">
+          <!-- Dots will be added dynamically -->
+        </div>
+
+        <div class="slideshow-controls">
+          <button class="control-btn" id="playPauseBtn">Pause</button>
+          <button class="control-btn" id="prevBtn">Previous</button>
+          <button class="control-btn" id="nextBtn">Next</button>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="gallery-grid" id="gallery-grid">
+          <!-- Gallery items will be added dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <!-- Same footer as index.html -->
+        </div>
+        <div class="copyright">
+          <p>&copy; 2025 Avipro Travels. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+      // Image data for the slideshow and gallery
+      const images = [
+        {
+          id: 1,
+          src: "images/tajmahal.jpg", // Add image URL here
+          title: "Taj Mahal, Agra",
+          description:
+            "The iconic symbol of love, a UNESCO World Heritage Site",
+          location: "Agra, Uttar Pradesh",
+        },
+        {
+          id: 2,
+          src: "images/jaipurpalace.jpeg", // Add image URL here
+          title: "Jaipur Palace",
+          description: "The Pink City's magnificent City Palace",
+          location: "Jaipur, Rajasthan",
+        },
+        {
+          id: 3,
+          src: "images/keralabackwaters.jpg", // Add image URL here
+          title: "Kerala Backwaters",
+          description: "Serene houseboat cruise through palm-fringed canals",
+          location: "Alleppey, Kerala",
+        },
+        {
+          id: 4,
+          src: "images/goabeach.jpg", // Add image URL here
+          title: "Goa Beaches",
+          description: "Golden sands and azure waters of Goa's coastline",
+          location: "North Goa",
+        },
+        {
+          id: 5,
+          src: "images/himalayanpeak.jpg", // Add image URL here
+          title: "Himalayan Peaks",
+          description: "Majestic snow-capped mountains of the Himalayas",
+          location: "Leh-Ladakh",
+        },
+        {
+          id: 6,
+          src: "images/kashmirdallake.webp", // Add image URL here
+          title: "Kashmir Dal Lake",
+          description: "Shikara rides on the beautiful Dal Lake",
+          location: "Srinagar, Kashmir",
+        },
+        {
+          id: 7,
+          src: "images/mysorepalace.jpg", // Add image URL here
+          title: "Mysore Palace",
+          description: "Illuminated palace during Dasara festival",
+          location: "Mysore, Karnataka",
+        },
+        {
+          id: 8,
+          src: "images/rannofkutch.jpg", // Add image URL here
+          title: "Rann of Kutch",
+          description: "White salt desert under the full moon",
+          location: "Gujarat",
+        },
+        {
+          id: 9,
+          src: "images/meghalaya.jpg", // Add image URL here
+          title: "Meghalaya Living Root Bridges",
+          description: "Natural bridges grown from tree roots",
+          location: "Cherrapunji, Meghalaya",
+        },
+        {
+          id: 10,
+          src: "images/varanasighats.jpeg", // Add image URL here
+          title: "Varanasi Ghats",
+          description: "Spiritual rituals on the banks of River Ganges",
+          location: "Varanasi, Uttar Pradesh",
+        },
+        {
+          id: 11,
+          src: "images/andamannicobar.webp", // Add image URL here
+          title: "Andaman Islands",
+          description: "Crystal clear waters and coral reefs",
+          location: "Andaman & Nicobar Islands",
+        },
+        {
+          id: 12,
+          src: "images/howrah.jpeg", // Add image URL here
+          title: "Kolkata Howrah Bridge",
+          description: "Iconic cantilever bridge over Hooghly River",
+          location: "Kolkata, West Bengal",
+        },
+        {
+          id: 13,
+          src: "images/munnar.webp", // Add image URL here
+          title: "Munnar Tea Plantations",
+          description: "Rolling hills covered with tea gardens",
+          location: "Munnar, Kerala",
+        },
+        {
+          id: 14,
+          src: "images/khajuraho.jpg", // Add image URL here
+          title: "Khajuraho Temples",
+          description: "Ancient temples with intricate carvings",
+          location: "Khajuraho, Madhya Pradesh",
+        },
+        {
+          id: 15,
+          src: "images/goldentemple.jpeg", // Add image URL here
+          title: "Amritsar Golden Temple",
+          description: "Sacred Sikh shrine covered in gold",
+          location: "Amritsar, Punjab",
+        },
+      ];
+
+      // Slideshow functionality
+      let currentSlide = 0;
+      let slideInterval;
+      let isPlaying = true;
+
+      // Initialize slideshow
+      function initSlideshow() {
+        const slideshow = document.getElementById("slideshow");
+        const dotsContainer = document.getElementById("dots-container");
+        const galleryGrid = document.getElementById("gallery-grid");
+
+        // Create slides
+        images.forEach((image, index) => {
+          // Create slide
+          const slide = document.createElement("div");
+          slide.className = "slide";
+          slide.innerHTML = `
+            <img src="${image.src}" alt="${image.title}" onerror="this.src='https://via.placeholder.com/1000x500/3498db/ffffff?text=Avipro+Travels'" />
+          `;
+          slideshow.appendChild(slide);
+
+          // Create dot
+          const dot = document.createElement("span");
+          dot.className = `dot ${index === 0 ? "active" : ""}`;
+          dot.addEventListener("click", () => goToSlide(index));
+          dotsContainer.appendChild(dot);
+
+          // Create gallery item
+          const galleryItem = document.createElement("div");
+          galleryItem.className = "gallery-item";
+          galleryItem.innerHTML = `
+            <img src="${image.src}" alt="${
+            image.title
+          }" onerror="this.src='https://via.placeholder.com/300x200/3498db/ffffff?text=${encodeURIComponent(
+            image.title
+          )}'" />
+            <div class="gallery-item-overlay">
+              <h4>${image.title}</h4>
+              <p>${image.location}</p>
+            </div>
+          `;
+          galleryItem.addEventListener("click", () => goToSlide(index));
+          galleryGrid.appendChild(galleryItem);
+        });
+
+        // Update first slide caption
+        updateCaption();
+
+        // Start slideshow
+        startSlideshow();
+      }
+
+      // Go to specific slide
+      function goToSlide(index) {
+        currentSlide = index;
+        const slideshow = document.getElementById("slideshow");
+        slideshow.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+        // Update dots
+        updateDots();
+
+        // Update caption
+        updateCaption();
+
+        // Restart interval if paused
+        if (!isPlaying) {
+          startSlideshow();
+        }
+      }
+
+      // Next slide
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % images.length;
+        goToSlide(currentSlide);
+      }
+
+      // Previous slide
+      function prevSlide() {
+        currentSlide = (currentSlide - 1 + images.length) % images.length;
+        goToSlide(currentSlide);
+      }
+
+      // Update dots
+      function updateDots() {
+        const dots = document.querySelectorAll(".dot");
+        dots.forEach((dot, index) => {
+          dot.classList.toggle("active", index === currentSlide);
+        });
+      }
+
+      // Update caption
+      function updateCaption() {
+        const image = images[currentSlide];
+        document.getElementById("slide-title").textContent = image.title;
+        document.getElementById(
+          "slide-description"
+        ).textContent = `${image.description} - ${image.location}`;
+      }
+
+      // Start slideshow
+      function startSlideshow() {
+        if (slideInterval) clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, 4000); // Change slide every 4 seconds
+        isPlaying = true;
+        document.getElementById("playPauseBtn").textContent = "Pause";
+        document.getElementById("playPauseBtn").classList.remove("pause");
+      }
+
+      // Pause slideshow
+      function pauseSlideshow() {
+        clearInterval(slideInterval);
+        isPlaying = false;
+        document.getElementById("playPauseBtn").textContent = "Play";
+        document.getElementById("playPauseBtn").classList.add("pause");
+      }
+
+      // Toggle play/pause
+      function togglePlayPause() {
+        if (isPlaying) {
+          pauseSlideshow();
+        } else {
+          startSlideshow();
+        }
+      }
+
+      // Event listeners
+      document.addEventListener("DOMContentLoaded", () => {
+        initSlideshow();
+
+        // Navigation buttons
+        document
+          .querySelector(".prev-btn")
+          .addEventListener("click", prevSlide);
+        document
+          .querySelector(".next-btn")
+          .addEventListener("click", nextSlide);
+
+        // Control buttons
+        document
+          .getElementById("playPauseBtn")
+          .addEventListener("click", togglePlayPause);
+        document.getElementById("prevBtn").addEventListener("click", prevSlide);
+        document.getElementById("nextBtn").addEventListener("click", nextSlide);
+
+        // Keyboard navigation
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowLeft") prevSlide();
+          if (e.key === "ArrowRight") nextSlide();
+          if (e.key === " ") {
+            e.preventDefault();
+            togglePlayPause();
+          }
+        });
+
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        const slideshowContainer = document.querySelector(
+          ".slideshow-container"
+        );
+
+        slideshowContainer.addEventListener("touchstart", (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        });
+
+        slideshowContainer.addEventListener("touchend", (e) => {
+          touchEndX = e.changedTouches[0].screenX;
+          handleSwipe();
+        });
+
+        function handleSwipe() {
+          const swipeThreshold = 50;
+          const diff = touchStartX - touchEndX;
+
+          if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+              // Swipe left - next slide
+              nextSlide();
+            } else {
+              // Swipe right - previous slide
+              prevSlide();
+            }
+          }
+        }
+
+        // Pause on hover
+        slideshowContainer.addEventListener("mouseenter", () => {
+          if (isPlaying) pauseSlideshow();
+        });
+
+        slideshowContainer.addEventListener("mouseleave", () => {
+          if (!isPlaying) startSlideshow();
+        });
+      });
+    </script>
+  </body>
+</html>
