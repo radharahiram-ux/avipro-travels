@@ -9,7 +9,7 @@
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
-**A comprehensive travel booking platform that lets you seamlessly navigate through destinations and choose your perfect journey based on personal preferences.**
+*A comprehensive travel booking platform that lets you seamlessly navigate through destinations and choose your perfect journey based on personal preferences.**
 
 [View Demo](#) • [Report Bug](#) • [Request Feature](#)
 
