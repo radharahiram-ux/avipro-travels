@@ -51,7 +51,7 @@ Avipro Travels is a modern, full-stack travel booking website designed to provid
 
 ## ✨ Key Features
 
-### 🌐 Frontend Features
+## 🌐 Frontend Features
 
 - **Seamless Navigation**: Easily browse through various travel destinations and packages
 - **Package Gallery**: Visual showcase of available travel options with detailed descriptions
