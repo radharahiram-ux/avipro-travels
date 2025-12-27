@@ -158,7 +158,7 @@ Avipro Travels is a modern, full-stack travel booking website designed to provid
 
 Follow these steps to set up Avipro Travels on your local machine.
 
-### Prerequisites
+## Prerequisites
 
 Before you begin, ensure you have the following installed:
 
